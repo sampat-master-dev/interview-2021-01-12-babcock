@@ -36,9 +36,9 @@ public class VehicleHireRepositoryTest {
     vehicleHireRepository.deleteAll();
 
     Vehicle vehicle1 = vehicleRepository
-      .save(new Vehicle("BC11KYC", "SMALL", "Toyota", "Avensis", "Petrol"));
+      .save(new Vehicle("BC11KYC", "Small car", "Toyota", "Avensis", "Petrol"));
     Vehicle vehicle2 = vehicleRepository
-      .save(new Vehicle("BD12KYC", "VAN", "Toyota", "Aygo", "Petrol"));
+      .save(new Vehicle("BD12KYC", "Van", "Toyota", "Aygo", "Petrol"));
 
     customerRepository.save(new Customer("First Customer", "PRIVATE"));
     Customer customer2 = customerRepository.save(new Customer("Second Customer", "PRIVATE"));
@@ -58,7 +58,7 @@ public class VehicleHireRepositoryTest {
 
     assertNotNull(vehiclesThatCanBeHiredToday);
     assertEquals(1, vehiclesThatCanBeHiredToday.size());
-    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BD12KYC", "VAN", "Toyota", "Aygo", "Petrol");
+    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BD12KYC", "Van", "Toyota", "Aygo", "Petrol");
   }
 
   @Test
@@ -70,8 +70,8 @@ public class VehicleHireRepositoryTest {
 
     assertNotNull(vehiclesThatCanBeHiredToday);
     assertEquals(2, vehiclesThatCanBeHiredToday.size());
-    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BC11KYC", "SMALL", "Toyota", "Avensis",
+    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BC11KYC", "Small car", "Toyota", "Avensis",
       "Petrol");
-    assertVehicle(vehiclesThatCanBeHiredToday.get(1), "BD12KYC", "VAN", "Toyota", "Aygo", "Petrol");
+    assertVehicle(vehiclesThatCanBeHiredToday.get(1), "BD12KYC", "Van", "Toyota", "Aygo", "Petrol");
   }
 }

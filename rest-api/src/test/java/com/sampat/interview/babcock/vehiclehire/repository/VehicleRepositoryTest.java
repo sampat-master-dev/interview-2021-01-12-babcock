@@ -28,7 +28,7 @@ public class VehicleRepositoryTest {
   @Test
   public void testAndValidateVehicleSave() {
     vehicleRepository
-      .save(new Vehicle("AB07KYC", "SMALL", "Toyota", "Avensis", "Petrol"));
+      .save(new Vehicle("AB07KYC", "Small car", "Toyota", "Avensis", "Petrol"));
 
     List<Vehicle> vehicleList = vehicleRepository.findByRegistrationNumber("AB07KYC");
 
@@ -36,18 +36,18 @@ public class VehicleRepositoryTest {
     assertEquals(1, vehicleList.size());
 
     Vehicle vehicle = vehicleList.get(0);
-    assertVehicle(vehicle, "AB07KYC", "SMALL", "Toyota", "Avensis", "Petrol");
+    assertVehicle(vehicle, "AB07KYC", "Small car", "Toyota", "Avensis", "Petrol");
   }
 
   @Test
   public void testAndValidateMultipleSave() {
-    vehicleRepository.save(new Vehicle("BC11KYC", "SMALL", "Toyota", "Avensis", "Petrol"));
-    vehicleRepository.save(new Vehicle("BD12KYC", "VAN", "Toyota", "Avensis", "Petrol"));
+    vehicleRepository.save(new Vehicle("BC11KYC", "Small car", "Toyota", "Avensis", "Petrol"));
+    vehicleRepository.save(new Vehicle("BD12KYC", "Van", "Toyota", "Avensis", "Petrol"));
     List<Vehicle> vehicleList = vehicleRepository.findAll();
 
     assertNotNull(vehicleList);
     assertEquals(2, vehicleList.size());
-    assertVehicle(vehicleList.get(0), "BC11KYC", "SMALL", "Toyota", "Avensis", "Petrol");
-    assertVehicle(vehicleList.get(1), "BD12KYC", "VAN", "Toyota", "Avensis", "Petrol");
+    assertVehicle(vehicleList.get(0), "BC11KYC", "Small car", "Toyota", "Avensis", "Petrol");
+    assertVehicle(vehicleList.get(1), "BD12KYC", "Van", "Toyota", "Avensis", "Petrol");
   }
 }

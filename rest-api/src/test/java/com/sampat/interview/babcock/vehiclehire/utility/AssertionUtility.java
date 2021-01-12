@@ -7,6 +7,10 @@ import com.sampat.interview.babcock.vehiclehire.entity.Vehicle;
 
 public final class AssertionUtility {
 
+  public static final String SMALL_CAR = "Small car";
+  public static final String ESTATE_CAR = "Estate car";
+  public static final String VAN = "Van";
+
   public static void assertVehicle(Vehicle vehicle, String registrationNumber,
     String vehicleCategory, String make, String model, String fuelType) {
 
