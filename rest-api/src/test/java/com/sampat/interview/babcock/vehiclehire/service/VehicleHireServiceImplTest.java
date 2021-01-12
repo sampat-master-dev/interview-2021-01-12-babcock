@@ -9,10 +9,7 @@ import com.sampat.interview.babcock.vehiclehire.entity.VehicleHire;
 import com.sampat.interview.babcock.vehiclehire.repository.CustomerRepository;
 import com.sampat.interview.babcock.vehiclehire.repository.VehicleHireRepository;
 import com.sampat.interview.babcock.vehiclehire.repository.VehicleRepository;
-import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +45,7 @@ public class VehicleHireServiceImplTest {
     Customer customer2 = customerRepository.save(new Customer("Second Customer", "PRIVATE"));
     customerRepository.save(new Customer("Apple", "BUSINESS"));
 
-    vehicleHireRepository.save(new VehicleHire(vehicle1.getId(), customer2.getId(), LocalDate
+    vehicleHireRepository.saveAndFlush(new VehicleHire(vehicle1.getId(), customer2.getId(), LocalDate
       .of(2021, 1, 1), LocalDate.of(2021, 1, 12)));
   }
 

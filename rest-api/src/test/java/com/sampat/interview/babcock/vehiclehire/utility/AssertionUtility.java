@@ -7,8 +7,9 @@ import com.sampat.interview.babcock.vehiclehire.entity.Vehicle;
 
 public final class AssertionUtility {
 
-  public static void assertVehicle(Vehicle vehicle, String registrationNumber, String vehicleCategory,
-    String make, String model, String fuelType) {
+  public static void assertVehicle(Vehicle vehicle, String registrationNumber,
+    String vehicleCategory, String make, String model, String fuelType) {
+
     assertNotNull(vehicle);
     assertEquals(registrationNumber, vehicle.getRegistrationNumber());
     assertEquals(vehicleCategory, vehicle.getVehicleCategory());

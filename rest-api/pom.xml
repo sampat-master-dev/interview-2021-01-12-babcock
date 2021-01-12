@@ -59,6 +59,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- springdoc-openapi With Swagger UI-->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.2.32</version>
+    </dependency>
+
     <!-- Test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

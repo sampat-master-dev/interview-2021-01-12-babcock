@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class VehicleHireRepositoryTest {
+
   @Autowired
   private VehicleRepository vehicleRepository;
 
@@ -43,32 +44,34 @@ public class VehicleHireRepositoryTest {
     Customer customer2 = customerRepository.save(new Customer("Second Customer", "PRIVATE"));
     customerRepository.save(new Customer("Apple", "BUSINESS"));
 
-    vehicleHireRepository.save(new VehicleHire(vehicle1.getId(), customer2.getId(), LocalDate
-      .of(2021, 1, 1), LocalDate.of(2021, 1, 12)));
+    vehicleHireRepository
+      .save(new VehicleHire(vehicle1.getId(), customer2.getId(), LocalDate.of(2021, 1, 1),
+        LocalDate.of(2021, 1, 12)));
   }
 
   @Test
-  public void whenTodayIs12Jan2021getVehiclesThatCanBeHiredTodayReturnsOneVehicle(){
-    Clock clock12thJanuary = Clock.fixed(Instant.parse("2021-01-12T06:00:00Z"), ZoneOffset.systemDefault());
+  public void whenTodayIs12Jan2021getVehiclesThatCanBeHiredTodayReturnsOneVehicle() {
+    Clock clock12thJanuary = Clock
+      .fixed(Instant.parse("2021-01-12T06:00:00Z"), ZoneOffset.systemDefault());
     List<Vehicle> vehiclesThatCanBeHiredToday = vehicleHireRepository
       .getVehiclesThatCanBeHiredToday(LocalDate.now(clock12thJanuary));
 
     assertNotNull(vehiclesThatCanBeHiredToday);
     assertEquals(1, vehiclesThatCanBeHiredToday.size());
     assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BD12KYC", "VAN", "Toyota", "Aygo", "Petrol");
-
   }
 
   @Test
-  public void whenTodayIs13Jan2021thgetVehiclesThatCanBeHiredTodayReturnsBothVehicles(){
-    Clock clock11thJanuary = Clock.fixed(Instant.parse("2021-01-13T06:00:00Z"), ZoneOffset.systemDefault());
+  public void whenTodayIs13Jan2021thgetVehiclesThatCanBeHiredTodayReturnsBothVehicles() {
+    Clock clock11thJanuary = Clock
+      .fixed(Instant.parse("2021-01-13T06:00:00Z"), ZoneOffset.systemDefault());
     List<Vehicle> vehiclesThatCanBeHiredToday = vehicleHireRepository
       .getVehiclesThatCanBeHiredToday(LocalDate.now(clock11thJanuary));
 
     assertNotNull(vehiclesThatCanBeHiredToday);
     assertEquals(2, vehiclesThatCanBeHiredToday.size());
-    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BC11KYC", "SMALL", "Toyota", "Avensis", "Petrol");
+    assertVehicle(vehiclesThatCanBeHiredToday.get(0), "BC11KYC", "SMALL", "Toyota", "Avensis",
+      "Petrol");
     assertVehicle(vehiclesThatCanBeHiredToday.get(1), "BD12KYC", "VAN", "Toyota", "Aygo", "Petrol");
-
   }
 }
