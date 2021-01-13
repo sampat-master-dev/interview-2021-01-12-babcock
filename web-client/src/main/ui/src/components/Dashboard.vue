@@ -4,14 +4,6 @@
     <div class="container mrgnbtm">
           <div class="row">
             <div class="col-md-8">
-                <Quote />
-            </div>
-          </div>
-    </div>
-    <div class="container mrgnbtm">
-          <div class="row">
-            <div class="col-md-8">
-<!--                <CreateUser @createUser="callCalculateCost($event)" />-->
                 <Vehicles :vehicles="vehicles" @getAllVehiclesAvailableForHire="getAllVehiclesAvailableForHire()" />
             </div>
           </div>
@@ -21,21 +13,14 @@
 
 <script>
 import Header from './Header.vue'
-// import DisplayBoard from './DisplayBoard.vue'
-// import Vehicles from './AvailableVehicles.vue'
 import { getAllVehiclesAvailableForHire, calculateCost } from '../services/VehicleHireService'
-import Quote from "@/components/Quote";
 import Vehicles from "@/components/AvailableVehicles";
 
 export default {
   name: 'Dashboard',
   components: {
     Header,
-    Vehicles,
-    Quote
-    // CreateUser,
-    // DisplayBoard,
-    // Vehicles
+    Vehicles
   },
   data() {
       return {

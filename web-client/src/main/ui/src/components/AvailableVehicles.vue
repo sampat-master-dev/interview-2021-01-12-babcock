@@ -1,13 +1,23 @@
 <template>
+
     <div class="container">
         <h2>Available Vehicles Today </h2>
-        <div class="container mrgnbtm">
+        <div id="quote" style="display:none">
           <div class="row">
             <div class="col-md-8">
-              <Vehicles :vehicles="vehicles" @getAllVehiclesAvailableForHire="getAllVehiclesAvailableForHire()" />
+              <div class="display-board">
+                <h4>Your Quotation for Vehicle Hire</h4>
+                <table width="400" class="table table-bordered">
+                  <tr><td>Cost Of Hiring:</td><td>{{quote.hiringCost}} GBP</td></tr>
+                  <tr><td>Date Start</td><td>{{quote.startDate}}</td></tr>
+                  <tr><td>Date Start</td><td>{{quote.endDate}}</td></tr>
+                  <tr><td>Vehicle:</td><td>{{quote.vehicle}}</td></tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+
 
       <table class="table table-bordered">
             <thead>
@@ -51,7 +61,14 @@ import {calculateCost, getAllVehiclesAvailableForHire} from '../services/Vehicle
           endDate: ''
         }
       },methods: {
-        getAllVehiclesAvailableForHire() {
+        displayQuoteDiv() {
+          var x = document.getElementById("quote");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        },getAllVehiclesAvailableForHire() {
           getAllVehiclesAvailableForHire().then(response => {
             console.log("ddddddd" + response)
             this.vehicles = response
@@ -69,12 +86,14 @@ import {calculateCost, getAllVehiclesAvailableForHire} from '../services/Vehicle
             this.quote = response
             console.log("emmitting quote" + this.quote)
             this.$emit('updateQuoteFromAvailableVehicles', this.quote)
+            this.displayQuoteDiv()
             // this.getAllVehiclesAvailableForHire();
           });
         }
       },
       mounted () {
         console.log("calling.....")
+
         this.getAllVehiclesAvailableForHire();
       }
      }
